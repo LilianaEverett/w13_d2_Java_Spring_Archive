@@ -26,15 +26,30 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
         User user = new User("Liliana");
+        User user1 = new User("Alex");
         userRepository.save(user);
+        userRepository.save(user1);
 
         Folder folder = new Folder("Codeclan", user);
+        Folder folder1 = new Folder("cv", user);
         folderRepository.save(folder);
+        folderRepository.save(folder1);
 
         File file = new File("many_classes", ".java", 45, folder);
+        File file1 = new File("java", ".java", 45, folder);
+        File file2 = new File("cv", ".txt", 45, folder1);
+        File file3 = new File("cover_letter", ".txt", 45, folder1);
         fileRepository.save(file);
+        fileRepository.save(file1);
+        fileRepository.save(file2);
+        fileRepository.save(file3);
 
         user.addFolder(folder);
+        user.addFolder(folder1);
+        user1.addFolder(folder1);
         folder.addFile(file);
+        folder.addFile(file1);
+        folder1.addFile(file2);
+        folder1.addFile(file3);
     }
 }
